@@ -1,7 +1,5 @@
 extends RigidBody3D
 
-
-@onready var cam_holder: Node3D = $"../CameraHolder"
 var move_force: float = 250.0
 var mouse_sens: float = 5.0
 var roll_force: float = 125.0
@@ -26,7 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var horizontal_dir := Input.get_vector("left", "righ", "forward", "backward")
 	var vertical_dir := Input.get_axis("down", "up")
 	var roll_dir := Input.get_axis("lean_left", "lean_right")
