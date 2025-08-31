@@ -4,8 +4,6 @@ extends RigidBody3D
 @onready var cam_holder: Node3D = $"../CameraHolder"
 var move_force: float = 5.0
 var mouse_sens: float = 0.05
-var max_torque: float = 2.0
-
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
