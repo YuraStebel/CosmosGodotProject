@@ -2,7 +2,7 @@ extends RigidBody3D
 
 
 @onready var cam_holder: Node3D = $"../CameraHolder"
-var move_force: float = 10.0
+var move_force: float = 5.0
 var mouse_sens: float = 0.05
 var max_torque: float = 2.0
 
@@ -34,6 +34,6 @@ func _physics_process(delta: float) -> void:
 	#print(horizontal_dir)
 	apply_central_force(transform.basis * Vector3(horizontal_dir.x, vertical_dir, horizontal_dir.y) * move_force)
 	
-	apply_torque(Vector3(0.0, 0.0, -roll_dir * move_force))
+	apply_torque(transform.basis * Vector3(0.0, 0.0, -roll_dir * move_force))
 	
 	#print(angular_velocity)
