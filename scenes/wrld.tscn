@@ -13,7 +13,7 @@ ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 sky_material = SubResource("ProceduralSkyMaterial_g4vrf")
 
 [sub_resource type="Environment" id="Environment_goyyt"]
-background_energy_multiplier = 0.0
+background_energy_multiplier = 0.1
 sky = SubResource("Sky_82rbl")
 tonemap_mode = 2
 
