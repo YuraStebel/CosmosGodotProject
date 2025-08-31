@@ -1,13 +1,23 @@
 extends RigidBody3D
 
+@onready var camera = $Neck/Camera3D
+
 var move_force: float = 250.0
 var mouse_sens: float = 5.0
 var roll_force: float = 125.0
 
+func _enter_tree() -> void:
+	set_multiplayer_authority(str(name).to_int())
+
 func _ready() -> void:
+	if not is_multiplayer_authority(): return
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	camera.current = true
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not is_multiplayer_authority(): return
+	
 	if event is InputEventMouseMotion:
 		var local_torque = Vector3(
 			-event.relative.y * mouse_sens,
@@ -25,6 +35,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	var horizontal_dir := Input.get_vector("left", "righ", "forward", "backward")
 	var vertical_dir := Input.get_axis("down", "up")
 	var roll_dir := Input.get_axis("lean_left", "lean_right")
