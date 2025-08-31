@@ -55,6 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.286957, 4.52222, 0)
 script = ExtResource("2_qrxvw")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Player"]
+mass = 50.0
 angular_damp = 1.0
 script = ExtResource("3_qrxvw")
 
