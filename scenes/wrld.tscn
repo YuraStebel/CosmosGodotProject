@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dec52b6m86arh"]
+[gd_scene load_steps=16 format=3 uid="uid://dec52b6m86arh"]
 
 [ext_resource type="Texture2D" uid="uid://dutj6oqpqsah8" path="res://icon.svg" id="1_hajux"]
 [ext_resource type="Script" uid="uid://diebeww21a2n5" path="res://scripts/wrld.gd" id="1_rypmk"]
+[ext_resource type="Texture2D" uid="uid://dwkrxscahr47b" path="res://images/1024px-Roscosmos_logo_en.svg.png" id="3_1fck1"]
+[ext_resource type="Texture2D" uid="uid://dr0lda1yvi5hx" path="res://images/djiabz1l0z64hy90d6kd0rdj84k2jwj3.jpg" id="4_iregm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g4vrf"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -11,7 +13,7 @@ ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 sky_material = SubResource("ProceduralSkyMaterial_g4vrf")
 
 [sub_resource type="Environment" id="Environment_goyyt"]
-background_mode = 2
+background_energy_multiplier = 0.0
 sky = SubResource("Sky_82rbl")
 tonemap_mode = 2
 
@@ -25,6 +27,27 @@ size = Vector3(15, 1, 15)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y4bj2"]
 size = Vector3(15, 1, 15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wjubb"]
+size = Vector3(1, 5, 7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dcih3"]
+albedo_texture = ExtResource("3_1fck1")
+uv1_scale = Vector3(0.43, 0.43, 0.43)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_abybr"]
+material = SubResource("StandardMaterial3D_dcih3")
+size = Vector3(1, 5, 7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vq1nk"]
+albedo_texture = ExtResource("4_iregm")
+uv1_scale = Vector3(0.3, 0.3, 0.3)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_5aatj"]
+material = SubResource("StandardMaterial3D_vq1nk")
+size = Vector3(1, 5, 7)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_rypmk")
@@ -43,6 +66,25 @@ mesh = SubResource("BoxMesh_s8qk6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_y4bj2")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 19, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_wjubb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("BoxMesh_abybr")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_wjubb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
+mesh = SubResource("BoxMesh_5aatj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
