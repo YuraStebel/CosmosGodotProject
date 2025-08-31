@@ -3,7 +3,8 @@ extends RigidBody3D
 
 @onready var cam_holder: Node3D = $"../CameraHolder"
 var move_force: float = 10.0
-var mouse_sens: float = 0.00005
+var mouse_sens: float = 0.05
+var max_torque: float = 2.0
 
 
 func _ready() -> void:
@@ -11,12 +12,15 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		#rotate_object_local(Vector3.UP, -event.relative.x * mouse_sens)
-		#rotate_object_local(Vector3.RIGHT, -event.relative.y * mouse_sens)
-		apply_torque(transform.basis * Vector3(-event.relative.y, -event.relative.x, 0.0))
-		print(event.relative)
-		print("))")
-	
+		var local_torque = Vector3(
+			-event.relative.y * mouse_sens,
+			-event.relative.x * mouse_sens,
+			0
+		)
+		
+		var world_torque = transform.basis * local_torque
+		apply_torque(world_torque)
+
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 
