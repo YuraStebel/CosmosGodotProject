@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cc3xq36jc4yo"]
+[gd_scene load_steps=10 format=3 uid="uid://cc3xq36jc4yo"]
 
 [ext_resource type="Script" uid="uid://5bierablijt0" path="res://scripts/rigid_body_3d.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dxru75ln0auhr" path="res://scripts/stats.gd" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://dtohxgx8784ld" path="res://images/HUD/oxygenbarbackground.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://bwx2p7b6c2rn7" path="res://images/HUD/oxygenbar.png" id="4_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://h3pqtcfeh2dj" path="res://images/HUD/HPBarBackground.png" id="5_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://bagwexbaiy3iw" path="res://images/HUD/HPBar.png" id="6_fjrip"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h5h1p"]
 
@@ -16,8 +18,6 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqkch"]
 
 [node name="RigidBody3D" type="RigidBody3D" groups=["player"]]
 collision_layer = 3
@@ -46,7 +46,7 @@ replication_config = SubResource("SceneReplicationConfig_3vyb7")
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("2_g2els")
 
-[node name="Control" type="Control" parent="."]
+[node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,21 +55,33 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HUD" type="PanelContainer" parent="Control"]
-custom_minimum_size = Vector2(0.03, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -150.0
-offset_top = 15.0
 offset_right = 150.0
-offset_bottom = 35.0
+offset_bottom = 40.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_dqkch")
+alignment = 1
 
-[node name="OxygenBar" type="TextureProgressBar" parent="Control/HUD"]
-visible = false
+[node name="OxygenBar" type="TextureProgressBar" parent="HUD/VBoxContainer"]
 layout_mode = 2
 texture_under = ExtResource("3_dqkch")
 texture_progress = ExtResource("4_qlg0r")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -40.0
+offset_right = 210.0
+grow_vertical = 0
+
+[node name="HealthBar" type="TextureProgressBar" parent="HUD/VBoxContainer2"]
+layout_mode = 2
+texture_under = ExtResource("5_tuyoq")
+texture_progress = ExtResource("6_fjrip")
