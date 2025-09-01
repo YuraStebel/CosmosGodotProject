@@ -1,22 +1,21 @@
-[gd_scene load_steps=17 format=3 uid="uid://dec52b6m86arh"]
+[gd_scene load_steps=18 format=3 uid="uid://dec52b6m86arh"]
 
 [ext_resource type="Texture2D" uid="uid://dutj6oqpqsah8" path="res://icon.svg" id="1_hajux"]
 [ext_resource type="Script" uid="uid://diebeww21a2n5" path="res://scripts/wrld.gd" id="1_rypmk"]
+[ext_resource type="Texture2D" uid="uid://phavsrjuypk" path="res://images/panorama/panorama_image.png" id="2_wjubb"]
 [ext_resource type="Texture2D" uid="uid://dwkrxscahr47b" path="res://images/1024px-Roscosmos_logo_en.svg.png" id="3_1fck1"]
 [ext_resource type="Texture2D" uid="uid://dr0lda1yvi5hx" path="res://images/djiabz1l0z64hy90d6kd0rdj84k2jwj3.jpg" id="4_iregm"]
 [ext_resource type="PackedScene" uid="uid://vnhnjdmku0r5" path="res://scenes/test_oxygen_recovery.tscn" id="5_iregm"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g4vrf"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dcih3"]
+panorama = ExtResource("2_wjubb")
 
-[sub_resource type="Sky" id="Sky_82rbl"]
-sky_material = SubResource("ProceduralSkyMaterial_g4vrf")
+[sub_resource type="Sky" id="Sky_abybr"]
+sky_material = SubResource("PanoramaSkyMaterial_dcih3")
 
-[sub_resource type="Environment" id="Environment_goyyt"]
-background_energy_multiplier = 0.1
-sky = SubResource("Sky_82rbl")
-tonemap_mode = 2
+[sub_resource type="Environment" id="Environment_vq1nk"]
+background_mode = 2
+sky = SubResource("Sky_abybr")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxsrx"]
 albedo_texture = ExtResource("1_hajux")
@@ -54,7 +53,7 @@ size = Vector3(1, 5, 7)
 script = ExtResource("1_rypmk")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_goyyt")
+environment = SubResource("Environment_vq1nk")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
