@@ -8,9 +8,14 @@ var oxygen_reloading_rate: float = 10.0
 var is_in_oxygen_zone = false
 
 #HUD
+@onready var control_node: Control = $"../Control"
 @onready var oxygen_bar = $"../Control/HUD/OxygenBar"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if not is_multiplayer_authority():
+		return
+	
+	control_node.show()
 	current_oxygen = max_oxygen
 
 
