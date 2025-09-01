@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dra76vsnneko3"]
+
+[ext_resource type="Script" uid="uid://yjx8hvtig63j" path="res://scripts/test_oxygen_refiller.gd" id="1_0o5x1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qk5xi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wqdw1"]
+albedo_color = Color(0.132473, 0.207397, 0.00833844, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5wann"]
+material = SubResource("StandardMaterial3D_wqdw1")
+
+[node name="TestOxygenRefiller" type="Node3D"]
+script = ExtResource("1_0o5x1")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 2.55145, 0)
+shape = SubResource("BoxShape3D_qk5xi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_5wann")
+skeleton = NodePath("../Area3D")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
