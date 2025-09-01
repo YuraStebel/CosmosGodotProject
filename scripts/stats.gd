@@ -1,7 +1,7 @@
 extends Node
 
 #КИСЛОРОД
-var max_oxygen: float = 5
+var max_oxygen: float = 100
 var current_oxygen: float
 var oxygen_decrease_rate: float = 1.0
 var oxygen_reloading_rate: float = 10.0
@@ -16,6 +16,8 @@ var is_alive = true
 @onready var control_node: Control = $"../HUD"
 @onready var oxygen_bar = $"../HUD/VBoxContainer/OxygenBar"
 @onready var health_bar = $"../HUD/VBoxContainer2/HealthBar"
+@onready var vignette = $"../HUD/VignetteContainer"
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if not is_multiplayer_authority():
@@ -51,6 +53,6 @@ func _physics_process(delta: float) -> void:
 	if current_health == 0:
 		is_alive = false
 	
-	print(current_health)
+	vignette.modulate = Color(1,1,1, 1 - current_health / 100)
 	oxygen_bar.value = current_oxygen
 	health_bar.value = current_health

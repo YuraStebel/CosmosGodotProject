@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cc3xq36jc4yo"]
+[gd_scene load_steps=11 format=3 uid="uid://cc3xq36jc4yo"]
 
 [ext_resource type="Script" uid="uid://5bierablijt0" path="res://scripts/rigid_body_3d.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dxru75ln0auhr" path="res://scripts/stats.gd" id="2_g2els"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bwx2p7b6c2rn7" path="res://images/HUD/oxygenbar.png" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://h3pqtcfeh2dj" path="res://images/HUD/HPBarBackground.png" id="5_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://bagwexbaiy3iw" path="res://images/HUD/HPBar.png" id="6_fjrip"]
+[ext_resource type="Texture2D" uid="uid://dsub6k4ud1try" path="res://images/HUD/vignette_dark.png" id="7_fjrip"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h5h1p"]
 
@@ -85,3 +86,18 @@ grow_vertical = 0
 layout_mode = 2
 texture_under = ExtResource("5_tuyoq")
 texture_progress = ExtResource("6_fjrip")
+
+[node name="VignetteContainer" type="PanelContainer" parent="HUD"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/VignetteContainer"]
+layout_mode = 2
+texture = ExtResource("7_fjrip")
+expand_mode = 2
