@@ -32,8 +32,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().quit()
 
 
-
-
 func _physics_process(_delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	
@@ -44,5 +42,6 @@ func _physics_process(_delta: float) -> void:
 	apply_central_force(transform.basis * Vector3(horizontal_dir.x, vertical_dir, horizontal_dir.y) * move_force)
 	
 	apply_torque(transform.basis * Vector3(0.0, 0.0, -roll_dir * roll_force))
+	
 	
 	#print(angular_velocity)
