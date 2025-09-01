@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cc3xq36jc4yo"]
+[gd_scene load_steps=8 format=3 uid="uid://cc3xq36jc4yo"]
 
 [ext_resource type="Script" uid="uid://5bierablijt0" path="res://scripts/rigid_body_3d.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dxru75ln0auhr" path="res://scripts/stats.gd" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://dtohxgx8784ld" path="res://images/HUD/oxygenbarbackground.png" id="3_dqkch"]
+[ext_resource type="Texture2D" uid="uid://bwx2p7b6c2rn7" path="res://images/HUD/oxygenbar.png" id="4_qlg0r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h5h1p"]
 
@@ -41,3 +43,29 @@ replication_config = SubResource("SceneReplicationConfig_3vyb7")
 
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("2_g2els")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HUD" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(0.03, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 15.0
+offset_right = 150.0
+offset_bottom = 35.0
+grow_horizontal = 2
+
+[node name="OxygenBar" type="TextureProgressBar" parent="Control/HUD"]
+layout_mode = 2
+texture_under = ExtResource("3_dqkch")
+texture_progress = ExtResource("4_qlg0r")
