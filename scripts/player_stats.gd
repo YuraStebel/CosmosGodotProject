@@ -1,7 +1,7 @@
 extends Node
 
 # Настройки кислорода
-@export var max_oxygen: float = 10.0
+@export var max_oxygen: float = 100.0
 @export var oxygen_consumption_rate: float = 1.0  # Потребление в секунду
 @export var oxygen_recovery_rate: float = 5.0     # Восстановление в секунду
 
@@ -9,12 +9,6 @@ var current_oxygen: float
 var is_in_oxygen_zone: bool = false
 
 @onready var oxygen_bar = $"../HUD/OxygenBar"
-@onready var breathing_sound = $"../Sounds/Breathing"
-
-var breathing = "res://sounds/player/breathing.mp3"
-var diyng_by_oxygen = "res://sounds/player/zadyhaetsya.mp3"
-
-var is_dying = false
 
 func _ready():
 	current_oxygen = max_oxygen
@@ -23,24 +17,6 @@ func _process(delta):
 	if is_multiplayer_authority():
 		update_oxygen(delta)
 		sync_oxygen_state()
-		play_sound_breathing()
-
-func play_sound_breathing():
-	if is_dying:
-		
-		if breathing_sound.stream != load(diyng_by_oxygen) or not breathing_sound.playing:
-			breathing_sound.stop()
-			breathing_sound.stream = load(diyng_by_oxygen)
-			breathing_sound.play()
-		return 
-	
-	if !is_in_oxygen_zone:
-		if not breathing_sound.playing:
-			breathing_sound.stream = load(breathing) 
-			breathing_sound.play()
-	else:
-		if breathing_sound.playing:
-			breathing_sound.stop()
 
 # Обновление уровня кислорода
 func update_oxygen(delta):
@@ -57,15 +33,14 @@ func update_oxygen(delta):
 		oxygen_bar.visible = true
 	oxygen_bar.value = current_oxygen
 	
-	
 	# Проверка на смерть от удушья
 	if current_oxygen <= 0:
-		is_dying = true
 		handle_oxygen_depletion()
 
 func handle_oxygen_depletion():
-	pass
-	
+	# Здесь реализуйте логику смерти/урона от нехватки кислорода
+	print("Игрок задыхается!")
+	# Например: get_parent().take_damage(10)
 
 # Синхронизация состояния кислорода
 func sync_oxygen_state():
