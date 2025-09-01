@@ -1,4 +1,3 @@
-# player_oxygen.gd
 extends Node
 
 # Настройки кислорода
@@ -9,6 +8,8 @@ extends Node
 var current_oxygen: float
 var is_in_oxygen_zone: bool = false
 
+@onready var oxygen_bar = $"../HUD/OxygenBar"
+
 func _ready():
 	current_oxygen = max_oxygen
 
@@ -16,7 +17,6 @@ func _process(delta):
 	if is_multiplayer_authority():
 		update_oxygen(delta)
 		sync_oxygen_state()
-		print(current_oxygen)
 
 # Обновление уровня кислорода
 func update_oxygen(delta):
@@ -26,6 +26,12 @@ func update_oxygen(delta):
 	else:
 		# Потребление кислорода
 		current_oxygen = max(current_oxygen - oxygen_consumption_rate * delta, 0)
+	
+	if current_oxygen == 100:
+		oxygen_bar.visible = false
+	else:
+		oxygen_bar.visible = true
+	oxygen_bar.value = current_oxygen
 	
 	# Проверка на смерть от удушья
 	if current_oxygen <= 0:
