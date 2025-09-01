@@ -28,6 +28,10 @@ func _physics_process(delta: float) -> void:
 		current_oxygen = min(current_oxygen + oxygen_reloading_rate * delta, max_oxygen)
 	else:
 		current_oxygen = max(current_oxygen - oxygen_decrease_rate * delta, 0)
-	print(current_oxygen)
+	
+	if current_oxygen == max_oxygen:
+		oxygen_bar.visible = false
+	else:
+		oxygen_bar.visible = true
 	
 	oxygen_bar.value = current_oxygen

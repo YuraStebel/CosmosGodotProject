@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dwkrxscahr47b" path="res://images/1024px-Roscosmos_logo_en.svg.png" id="3_1fck1"]
 [ext_resource type="Texture2D" uid="uid://dr0lda1yvi5hx" path="res://images/djiabz1l0z64hy90d6kd0rdj84k2jwj3.jpg" id="4_iregm"]
 [ext_resource type="PackedScene" uid="uid://cnllahjfdnqyw" path="res://scenes/test_oxygen_refiller.tscn" id="6_wjubb"]
-[ext_resource type="PackedScene" uid="uid://bsgkjamoxjbsv" path="res://scenes/space_station.tscn" id="7_dcih3"]
+[ext_resource type="PackedScene" path="res://scenes/space_station.tscn" id="7_dcih3"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dcih3"]
 panorama = ExtResource("2_wjubb")

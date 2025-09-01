@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cc3xq36jc4yo"]
+[gd_scene load_steps=9 format=3 uid="uid://cc3xq36jc4yo"]
 
 [ext_resource type="Script" uid="uid://5bierablijt0" path="res://scripts/rigid_body_3d.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dxru75ln0auhr" path="res://scripts/stats.gd" id="2_g2els"]
@@ -16,6 +16,8 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqkch"]
 
 [node name="RigidBody3D" type="RigidBody3D" groups=["player"]]
 collision_layer = 3
@@ -45,7 +47,6 @@ replication_config = SubResource("SceneReplicationConfig_3vyb7")
 script = ExtResource("2_g2els")
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,8 +66,10 @@ offset_top = 15.0
 offset_right = 150.0
 offset_bottom = 35.0
 grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dqkch")
 
 [node name="OxygenBar" type="TextureProgressBar" parent="Control/HUD"]
+visible = false
 layout_mode = 2
 texture_under = ExtResource("3_dqkch")
 texture_progress = ExtResource("4_qlg0r")
