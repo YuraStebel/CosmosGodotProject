@@ -6,7 +6,7 @@ var move_force: float = 250.0
 var mouse_sens: float = 5.0
 var roll_force: float = 125.0
 
-@onready var oxygen_system = $PlayerOxygen
+@onready var stats = $Stats
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -47,17 +47,3 @@ func _physics_process(_delta: float) -> void:
 	
 	
 	#print(angular_velocity)
-
-# Методы для взаимодействия с кислородной системой
-func enter_oxygen_zone():
-	if oxygen_system:
-		oxygen_system.enter_oxygen_zone()
-
-func exit_oxygen_zone():
-	if oxygen_system:
-		oxygen_system.exit_oxygen_zone()
-
-func get_oxygen_percentage() -> float:
-	if oxygen_system:
-		return oxygen_system.get_oxygen_percentage()
-	return 1.0
