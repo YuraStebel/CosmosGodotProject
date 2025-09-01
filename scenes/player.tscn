@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc3xq36jc4yo"]
+[gd_scene load_steps=6 format=3 uid="uid://cc3xq36jc4yo"]
 
 [ext_resource type="Script" uid="uid://5bierablijt0" path="res://scripts/rigid_body_3d.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://crympepllrhbt" path="res://scripts/player_oxygen.gd" id="2_g2els"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h5h1p"]
 
@@ -37,3 +38,6 @@ spot_range = 10.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_3vyb7")
+
+[node name="PlayerOxygen" type="Node" parent="."]
+script = ExtResource("2_g2els")
