@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://5bierablijt0" path="res://scripts/rigid_body_3d.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dxru75ln0auhr" path="res://scripts/stats.gd" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://cphhe7lok22x" path="res://scenes/maneken.tscn" id="2_jej6c"]
 [ext_resource type="Texture2D" uid="uid://dtohxgx8784ld" path="res://images/HUD/oxygenbarbackground.png" id="3_dqkch"]
 [ext_resource type="PackedScene" uid="uid://56ogp7kcvfbl" path="res://scenes/first_aid_kit.tscn" id="3_jej6c"]
 [ext_resource type="Texture2D" uid="uid://bwx2p7b6c2rn7" path="res://images/HUD/oxygenbar.png" id="4_qlg0r"]
@@ -14,7 +15,8 @@
 [ext_resource type="AudioStream" uid="uid://qnda58hvffad" path="res://sounds/player/heartbeat.ogg" id="11_d2wvv"]
 [ext_resource type="AudioStream" uid="uid://qi6n6cgritvv" path="res://sounds/player/death.mp3" id="12_3v2ag"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h5h1p"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_f1ej7"]
+radius = 0.289898
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qugw0"]
 
@@ -155,10 +157,15 @@ script = ExtResource("1_4flbx")
 script = ExtResource("2_g2els")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_h5h1p")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.328327, 0.0316043)
+shape = SubResource("SphereShape3D_f1ej7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_qugw0")
+
+[node name="Maneken" parent="." instance=ExtResource("2_jej6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.20109, 0)
 
 [node name="Neck" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
