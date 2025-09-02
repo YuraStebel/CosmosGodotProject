@@ -1,14 +1,14 @@
 extends Node
 
 #КИСЛОРОД
-var max_oxygen: float = 5
+var max_oxygen: float = 60
 var current_oxygen: float
 var oxygen_decrease_rate: float = 1.0
 var oxygen_reloading_rate: float = 10.0
 var is_in_oxygen_zone = false
 
 #ЗДОРОВЬЕ
-var max_health: float = 10
+var max_health: float = 100
 var current_health: float
 var health_decrease_by_oxygen_rate: float = 5
 var is_alive = true
