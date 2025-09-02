@@ -11,13 +11,18 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	healing(delta)
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action("use"):
+	if Input.is_action_pressed("use"):
 		is_using = true
 	else:
 		is_using = false
+	
+	healing(delta)
+
+#func _unhandled_input(event: InputEvent) -> void:
+	#if event.is_action("use"):
+		#is_using = true
+	#else:
+		#is_using = false
 
 func healing(delta):
 	if get_parent().get_parent().is_in_group("player"):
