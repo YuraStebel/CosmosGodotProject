@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://cc3xq36jc4yo"]
+[gd_scene load_steps=22 format=3 uid="uid://cc3xq36jc4yo"]
 
 [ext_resource type="Script" uid="uid://5bierablijt0" path="res://scripts/rigid_body_3d.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dxru75ln0auhr" path="res://scripts/stats.gd" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://dtohxgx8784ld" path="res://images/HUD/oxygenbarbackground.png" id="3_dqkch"]
+[ext_resource type="PackedScene" uid="uid://56ogp7kcvfbl" path="res://scenes/first_aid_kit.tscn" id="3_jej6c"]
 [ext_resource type="Texture2D" uid="uid://bwx2p7b6c2rn7" path="res://images/HUD/oxygenbar.png" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://h3pqtcfeh2dj" path="res://images/HUD/HPBarBackground.png" id="5_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://m3v3iov6bcol" path="res://images/HUD/oxygen_warning.png" id="5_ur7pv"]
@@ -150,6 +151,9 @@ mass = 50.0
 angular_damp = 1.0
 script = ExtResource("1_4flbx")
 
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("2_g2els")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_h5h1p")
 
@@ -165,11 +169,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 light_color = Color(0.964706, 0.933333, 0.890196, 1)
 spot_range = 10.0
 
+[node name="Hand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.617231, 0, -0.929427)
+
+[node name="FirstAidKit" parent="Hand" instance=ExtResource("3_jej6c")]
+freeze = true
+
+[node name="Sounds" type="Node3D" parent="."]
+
+[node name="Breath" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("8_smehm")
+volume_db = -5.0
+parameters/looping = true
+
+[node name="Heart" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("11_d2wvv")
+volume_db = -20.0
+parameters/looping = true
+
+[node name="Death" type="AudioStreamPlayer3D" parent="Sounds"]
+stream = ExtResource("12_3v2ag")
+attenuation_model = 3
+volume_db = -20.0
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_3vyb7")
-
-[node name="Stats" type="Node" parent="."]
-script = ExtResource("2_g2els")
 
 [node name="HUD" type="Control" parent="."]
 visible = false
@@ -243,20 +267,3 @@ mouse_filter = 2
 layout_mode = 2
 texture = ExtResource("7_fjrip")
 expand_mode = 2
-
-[node name="Sounds" type="Node3D" parent="."]
-
-[node name="Breath" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("8_smehm")
-volume_db = -5.0
-parameters/looping = true
-
-[node name="Heart" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("11_d2wvv")
-volume_db = -20.0
-parameters/looping = true
-
-[node name="Death" type="AudioStreamPlayer3D" parent="Sounds"]
-stream = ExtResource("12_3v2ag")
-attenuation_model = 3
-volume_db = -20.0

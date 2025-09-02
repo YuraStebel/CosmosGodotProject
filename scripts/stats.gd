@@ -1,14 +1,14 @@
 extends Node
 
 #КИСЛОРОД
-var max_oxygen: float = 60
+var max_oxygen: float = 2
 var current_oxygen: float
 var oxygen_decrease_rate: float = 1.0
 var oxygen_reloading_rate: float = 10.0
 var is_in_oxygen_zone = false
 
 #ЗДОРОВЬЕ
-var max_health: float = 100
+var max_health: float = 50
 var current_health: float
 var health_decrease_by_oxygen_rate: float = 5
 var is_alive = true
@@ -107,6 +107,8 @@ func health_system(delta):
 		health_bar.visible = false
 	else:
 		health_bar.visible = true
+	
+	current_health = min(current_health, max_health)
 	
 	if current_health < 50:
 		should_soundplayer_heart_play = true

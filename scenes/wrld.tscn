@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dec52b6m86arh"]
+[gd_scene load_steps=21 format=3 uid="uid://dec52b6m86arh"]
 
 [ext_resource type="Texture2D" uid="uid://dutj6oqpqsah8" path="res://icon.svg" id="1_hajux"]
 [ext_resource type="Script" uid="uid://diebeww21a2n5" path="res://scripts/wrld.gd" id="1_rypmk"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cmhlxml4kf6u0" path="res://3afa17bf2d80e225ae97899d16b08dd4.jpg" id="6_abybr"]
 [ext_resource type="PackedScene" uid="uid://cnllahjfdnqyw" path="res://scenes/test_oxygen_refiller.tscn" id="6_wjubb"]
 [ext_resource type="PackedScene" uid="uid://bsgkjamoxjbsv" path="res://scenes/space_station.tscn" id="7_dcih3"]
+[ext_resource type="PackedScene" uid="uid://56ogp7kcvfbl" path="res://scenes/first_aid_kit.tscn" id="9_vq1nk"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dcih3"]
 panorama = ExtResource("2_wjubb")
@@ -151,6 +152,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.64713, 1, 6.29736)
 
 [node name="SpaceStation" parent="." instance=ExtResource("7_dcih3")]
 transform = Transform3D(0.928492, 0.32918, 0.171879, -0.371352, 0.823051, 0.42975, 0, -0.462847, 0.886438, -39, 0, 99)
+
+[node name="FirstAidKit" parent="." instance=ExtResource("9_vq1nk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6204, 0.75, -3.54316)
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
