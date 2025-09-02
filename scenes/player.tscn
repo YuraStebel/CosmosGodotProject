@@ -1,12 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://cc3xq36jc4yo"]
+[gd_scene load_steps=20 format=3 uid="uid://cc3xq36jc4yo"]
 
 [ext_resource type="Script" uid="uid://5bierablijt0" path="res://scripts/rigid_body_3d.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dxru75ln0auhr" path="res://scripts/stats.gd" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://dtohxgx8784ld" path="res://images/HUD/oxygenbarbackground.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://bwx2p7b6c2rn7" path="res://images/HUD/oxygenbar.png" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://h3pqtcfeh2dj" path="res://images/HUD/HPBarBackground.png" id="5_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://m3v3iov6bcol" path="res://images/HUD/oxygen_warning.png" id="5_ur7pv"]
 [ext_resource type="Texture2D" uid="uid://bagwexbaiy3iw" path="res://images/HUD/HPBar.png" id="6_fjrip"]
+[ext_resource type="AudioStream" uid="uid://be1kjjdbctatl" path="res://sounds/player/1oxygen_warning.ogg" id="6_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://dsub6k4ud1try" path="res://images/HUD/vignette_dark.png" id="7_fjrip"]
+[ext_resource type="AudioStream" uid="uid://bxgij2drmmoja" path="res://sounds/player/breathing.mp3" id="8_smehm"]
+[ext_resource type="AudioStream" uid="uid://qnda58hvffad" path="res://sounds/player/heartbeat.ogg" id="11_d2wvv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h5h1p"]
 
@@ -19,6 +23,125 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+
+[sub_resource type="Animation" id="Animation_y4r1p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OxygenWarning:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OxygenWarningSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_d2wvv"]
+resource_name = "oxygen_warning_agressive"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OxygenWarningSound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OxygenWarning:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ur7pv"]
+resource_name = "oxygen_warning"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OxygenWarning:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OxygenWarningSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3v2ag"]
+resource_name = "oxygen_warning_when_zero"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OxygenWarning:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OxygenWarningSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true, true, true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d2wvv"]
+_data = {
+&"RESET": SubResource("Animation_y4r1p"),
+&"oxygen_warning_agressive": SubResource("Animation_d2wvv"),
+&"oxygen_warning_base": SubResource("Animation_ur7pv"),
+&"oxygen_warning_when_zero": SubResource("Animation_3v2ag")
+}
 
 [node name="RigidBody3D" type="RigidBody3D" groups=["player"]]
 collision_layer = 3
@@ -48,6 +171,7 @@ replication_config = SubResource("SceneReplicationConfig_3vyb7")
 script = ExtResource("2_g2els")
 
 [node name="HUD" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,21 +180,38 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -150.0
-offset_right = 150.0
-offset_bottom = 40.0
+offset_left = -160.0
+offset_top = 15.0
+offset_right = 164.0
+offset_bottom = 35.0
 grow_horizontal = 2
-alignment = 1
 
-[node name="OxygenBar" type="TextureProgressBar" parent="HUD/VBoxContainer"]
+[node name="OxygenBar" type="TextureProgressBar" parent="HUD/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 texture_under = ExtResource("3_dqkch")
 texture_progress = ExtResource("4_qlg0r")
+
+[node name="OxygenWarning" type="TextureRect" parent="HUD/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_ur7pv")
+expand_mode = 2
+
+[node name="OxygenWarningSound" type="AudioStreamPlayer" parent="HUD/HBoxContainer"]
+stream = ExtResource("6_y4r1p")
+volume_db = -5.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/HBoxContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_d2wvv")
+}
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HUD"]
 layout_mode = 1
@@ -101,3 +242,15 @@ mouse_filter = 2
 layout_mode = 2
 texture = ExtResource("7_fjrip")
 expand_mode = 2
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Breath" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("8_smehm")
+volume_db = -5.0
+parameters/looping = true
+
+[node name="Heart" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("11_d2wvv")
+volume_db = -20.0
+parameters/looping = true
