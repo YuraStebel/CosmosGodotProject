@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var main_menu = $CanvasLayer/MainMenu
+@onready var main_menu = $CanvasLayer
 @onready var adress_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AdressEntry
 
 const Player = preload("res://scenes/player.tscn")
