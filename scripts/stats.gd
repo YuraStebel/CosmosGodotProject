@@ -1,14 +1,14 @@
 extends Node
 
 #КИСЛОРОД
-var max_oxygen: float = 20
+var max_oxygen: float = 5
 var current_oxygen: float
 var oxygen_decrease_rate: float = 1.0
 var oxygen_reloading_rate: float = 10.0
 var is_in_oxygen_zone = false
 
 #ЗДОРОВЬЕ
-var max_health: float = 100
+var max_health: float = 10
 var current_health: float
 var health_decrease_by_oxygen_rate: float = 5
 var is_alive = true
@@ -28,7 +28,10 @@ var should_soundplayer_breath_play: bool = false
 
 #ЗВУКИ здоровье
 @onready var soundplayer_heartbeat = $"../Sounds/Heart"
+@onready var soundplayer_death = $"../Sounds/Death"
 var should_soundplayer_heart_play: bool = false
+var was_played_death_sound: bool = false
+
 
 func _ready() -> void:
 	if not is_multiplayer_authority():
@@ -114,7 +117,6 @@ func health_system(delta):
 	
 	if is_alive:
 		if should_soundplayer_heart_play and not soundplayer_heartbeat.playing:
-			print("a")
 			soundplayer_heartbeat.play()
 		elif not should_soundplayer_heart_play and soundplayer_heartbeat.playing:
 			soundplayer_breath.stop()
@@ -123,8 +125,17 @@ func health_system(delta):
 		is_alive = false
 		soundplayer_heartbeat.stop()
 		soundplayer_breath.stop()
+		play_death_sound.rpc()
+		
+		
 	
 	vignette.modulate = Color(1,1,1, 1 - current_health / 100)
 	
 	
 	health_bar.value = current_health
+
+@rpc("call_local")
+func play_death_sound():
+	if not soundplayer_death.playing and not was_played_death_sound:
+		soundplayer_death.play()
+		was_played_death_sound = true
