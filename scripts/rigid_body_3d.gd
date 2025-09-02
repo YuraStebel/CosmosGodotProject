@@ -3,10 +3,11 @@ extends RigidBody3D
 @onready var camera = $Neck/Camera3D
 
 var move_force: float = 250.0
-var mouse_sens: float = 5.0
-var roll_force: float = 125.0
+var mouse_sens: float = 3.0
+var roll_force: float = 50.0
 
 @onready var stats = $Stats
+
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -46,6 +47,8 @@ func _physics_process(_delta: float) -> void:
 		apply_central_force(transform.basis * Vector3(horizontal_dir.x, vertical_dir, horizontal_dir.y) * move_force)
 		
 		apply_torque(transform.basis * Vector3(0.0, 0.0, -roll_dir * roll_force))
+		
 	
-	
+	if Input.is_action_just_pressed("use2"):
+		get_tree().current_scene.drop_item_request.rpc()
 	#print(angular_velocity)

@@ -149,8 +149,8 @@ _data = {
 
 [node name="RigidBody3D" type="RigidBody3D" groups=["player"]]
 collision_layer = 3
-mass = 100.0
-angular_damp = 1.0
+mass = 150.0
+angular_damp = 2.0
 script = ExtResource("1_4flbx")
 
 [node name="Stats" type="Node" parent="."]
