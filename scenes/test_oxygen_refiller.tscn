@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cnllahjfdnqyw"]
 
-[ext_resource type="Script" uid="uid://yjx8hvtig63j" path="res://scripts/test_oxygen_refiller.gd" id="1_0o5x1"]
+[ext_resource type="Script" path="res://scripts/test_oxygen_refiller.gd" id="1_0o5x1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qk5xi"]
 

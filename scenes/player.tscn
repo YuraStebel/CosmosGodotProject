@@ -177,6 +177,7 @@ light_color = Color(0.964706, 0.933333, 0.890196, 1)
 spot_range = 10.0
 
 [node name="InteractionCast" type="RayCast3D" parent="Neck"]
+visible = false
 target_position = Vector3(0, 0, -1)
 
 [node name="Hand" type="Node3D" parent="."]
