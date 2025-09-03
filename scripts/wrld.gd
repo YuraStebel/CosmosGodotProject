@@ -48,21 +48,23 @@ func remove_player(peer_id):
 	if player:
 		player.queue_free()
 
-@rpc('any_peer', 'call_local')
-func drop_item_request():
-	var sender_id = multiplayer.get_remote_sender_id()
-	print(sender_id)
+func find_player(id):
 	for p in players:
-		if p.name == str(sender_id):
-			var obj = p.get_node("Hand").get_child(0)
-			if obj:
-				var obj_path = obj.get_path()
-				drop_item.rpc(obj_path)
-				#obj.freeze = false
+		if p.name == str(id):
+			return p
+
+@rpc('any_peer', 'call_local')
+func try_pickup_item(item_path):
+	var sender_id = multiplayer.get_remote_sender_id()
+	var requesting_player = find_player(sender_id)
+	
+	var item = get_node_or_null(item_path)
+	if item:
+		destroy_item.rpc(item_path)
+
 
 @rpc('authority', 'call_local')
-func drop_item(item_path):
-	var obj = get_node_or_null(item_path)
-	if obj:
-		obj.queue_free()
-	
+func destroy_item(item_path):
+	var item = get_node_or_null(item_path)
+	if item:
+		item.queue_free()

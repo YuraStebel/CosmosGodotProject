@@ -8,6 +8,7 @@ var roll_force: float = 50.0
 
 @onready var stats = $Stats
 
+@onready var interact_cast = $Neck/InteractionCast
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -51,6 +52,11 @@ func _physics_process(_delta: float) -> void:
 		apply_torque(transform.basis * Vector3(0.0, 0.0, -roll_dir * roll_force))
 		
 	
-	if Input.is_action_just_pressed("use2"):
-		get_tree().current_scene.drop_item_request.rpc()
-	#print(angular_velocity)
+		use()
+
+func use():
+	var get_collision = interact_cast.get_collider()
+	
+	if Input.is_action_just_pressed("use"):
+		if get_collision and get_collision.is_in_group("pickable"):
+			get_tree().current_scene.try_pickup_item.rpc(get_collision.get_path())

@@ -25,11 +25,4 @@ func healing(delta):
 			get_parent().get_parent().get_node("Stats").current_health += delta * heal_power
 			heal_charge -= heal_power * delta
 		
-			
-	
-	if heal_charge <= 0:
-		destroy_item.rpc()
-
-@rpc('call_local')
-func destroy_item():
-	queue_free()
+		
