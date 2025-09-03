@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cc3xq36jc4yo"]
+[gd_scene load_steps=23 format=3 uid="uid://cc3xq36jc4yo"]
 
 [ext_resource type="Script" uid="uid://5bierablijt0" path="res://scripts/rigid_body_3d.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dxru75ln0auhr" path="res://scripts/stats.gd" id="2_g2els"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bxgij2drmmoja" path="res://sounds/player/breathing.mp3" id="8_smehm"]
 [ext_resource type="AudioStream" uid="uid://qnda58hvffad" path="res://sounds/player/heartbeat.ogg" id="11_d2wvv"]
 [ext_resource type="AudioStream" uid="uid://qi6n6cgritvv" path="res://sounds/player/death.mp3" id="12_3v2ag"]
+[ext_resource type="PackedScene" uid="uid://bpwn7ulu6dvaa" path="res://models/cool_sunglasses.glb" id="14_f1ej7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f1ej7"]
 radius = 0.289898
@@ -155,6 +156,9 @@ script = ExtResource("1_4flbx")
 
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("2_g2els")
+
+[node name="cool_sunglasses" parent="." instance=ExtResource("14_f1ej7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.515, 0)
 
 [node name="ChibinautModel" parent="." instance=ExtResource("3_f1ej7")]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, -0.53171, 0)
