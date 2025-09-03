@@ -60,7 +60,8 @@ func try_pickup_item(item_path):
 	
 	var item = get_node_or_null(item_path)
 	if item:
-		destroy_item.rpc(item_path)
+		if multiplayer.is_server():
+			destroy_item.rpc(item_path)
 
 
 @rpc('authority', 'call_local')
