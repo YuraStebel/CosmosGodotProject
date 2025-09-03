@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyp773kf87owt"]
+
+[ext_resource type="PackedScene" uid="uid://cfgylyc4clf7w" path="res://models/Chibinaut.glb" id="1_gx6ta"]
+
+[node name="ChibinautModel" instance=ExtResource("1_gx6ta")]

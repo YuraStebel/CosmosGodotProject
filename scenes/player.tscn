@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://5bierablijt0" path="res://scripts/rigid_body_3d.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dxru75ln0auhr" path="res://scripts/stats.gd" id="2_g2els"]
-[ext_resource type="PackedScene" uid="uid://cphhe7lok22x" path="res://scenes/maneken.tscn" id="2_jej6c"]
 [ext_resource type="Texture2D" uid="uid://dtohxgx8784ld" path="res://images/HUD/oxygenbarbackground.png" id="3_dqkch"]
+[ext_resource type="PackedScene" uid="uid://dyp773kf87owt" path="res://scenes/chibinaut_model.tscn" id="3_f1ej7"]
 [ext_resource type="PackedScene" uid="uid://56ogp7kcvfbl" path="res://scenes/first_aid_kit.tscn" id="3_jej6c"]
 [ext_resource type="Texture2D" uid="uid://bwx2p7b6c2rn7" path="res://images/HUD/oxygenbar.png" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://h3pqtcfeh2dj" path="res://images/HUD/HPBarBackground.png" id="5_tuyoq"]
@@ -156,6 +156,9 @@ script = ExtResource("1_4flbx")
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("2_g2els")
 
+[node name="ChibinautModel" parent="." instance=ExtResource("3_f1ej7")]
+transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 0, -0.352601, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.328327, 0.0316043)
 shape = SubResource("SphereShape3D_f1ej7")
@@ -163,9 +166,6 @@ shape = SubResource("SphereShape3D_f1ej7")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("CapsuleMesh_qugw0")
-
-[node name="Maneken" parent="." instance=ExtResource("2_jej6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.20109, 0)
 
 [node name="Neck" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
