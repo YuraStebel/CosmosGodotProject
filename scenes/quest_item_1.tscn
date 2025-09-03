@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://pluxp3ca3xdk"]
+
+[ext_resource type="PackedScene" uid="uid://cq1ewwfvo44r3" path="res://models/quest_item1.glb" id="1_5ri4y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ti8t4"]
+
+[node name="QuestItem1" type="RigidBody3D" groups=["pickable", "quest_item"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ti8t4")
+
+[node name="quest_item1" parent="." instance=ExtResource("1_5ri4y")]
+transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0, 0, 0)

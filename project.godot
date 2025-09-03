@@ -23,6 +23,7 @@ buses/default_bus_layout=""
 
 player=""
 pickable=""
+quest_item=""
 
 [input]
 

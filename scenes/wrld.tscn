@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dec52b6m86arh"]
+[gd_scene load_steps=24 format=3 uid="uid://dec52b6m86arh"]
 
 [ext_resource type="Texture2D" uid="uid://dutj6oqpqsah8" path="res://icon.svg" id="1_hajux"]
 [ext_resource type="Script" uid="uid://diebeww21a2n5" path="res://scripts/wrld.gd" id="1_rypmk"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bsgkjamoxjbsv" path="res://scenes/space_station.tscn" id="7_dcih3"]
 [ext_resource type="PackedScene" uid="uid://56ogp7kcvfbl" path="res://scenes/first_aid_kit.tscn" id="9_vq1nk"]
 [ext_resource type="PackedScene" uid="uid://rw316pew7cps" path="res://scenes/spaceship.tscn" id="10_5aatj"]
+[ext_resource type="PackedScene" uid="uid://fqew7oqxjxiy" path="res://scenes/quest_item_2.tscn" id="11_u4mco"]
+[ext_resource type="PackedScene" uid="uid://pluxp3ca3xdk" path="res://scenes/quest_item_1.tscn" id="12_sai5e"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dcih3"]
 panorama = ExtResource("2_wjubb")
@@ -159,6 +161,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6204, 0.75, -3.54316)
 
 [node name="Spaceship" parent="." instance=ExtResource("10_5aatj")]
 transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 104, 0, 16)
+
+[node name="QuestItem2" parent="." instance=ExtResource("11_u4mco")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.29984, 1.54097, 1.35281)
+
+[node name="QuestItem1" parent="." instance=ExtResource("12_sai5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.12552, 0.99975, -0.564409)
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]

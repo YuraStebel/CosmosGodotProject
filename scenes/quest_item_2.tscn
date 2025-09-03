@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://fqew7oqxjxiy"]
+
+[ext_resource type="PackedScene" uid="uid://gx5ls2uilsgc" path="res://models/quest_item2.glb" id="1_4r3lt"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nswi0"]
+height = 1.23
+radius = 0.315
+
+[node name="QuestItem2" type="RigidBody3D" groups=["pickable", "quest_item"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_nswi0")
+
+[node name="quest_item2" parent="." instance=ExtResource("1_4r3lt")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
