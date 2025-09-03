@@ -1,15 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://56ogp7kcvfbl"]
+[gd_scene load_steps=5 format=3 uid="uid://56ogp7kcvfbl"]
 
 [ext_resource type="Script" uid="uid://360k1ndqmyf6" path="res://scripts/first_aid_kit.gd" id="1_3od7p"]
+[ext_resource type="PackedScene" uid="uid://5572e2lx0lo7" path="res://models/First_aid_kit.glb" id="2_2q3br"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2q3br"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhlam"]
-albedo_color = Color(0.430604, 0.129474, 0.0140828, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_rf7l4"]
-material = SubResource("StandardMaterial3D_xhlam")
-size = Vector3(0.5, 0.5, 0.5)
+size = Vector3(1.36, 1.5, 0.43)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3od7p"]
 properties/0/path = NodePath(".:position")
@@ -23,12 +18,12 @@ properties/1/replication_mode = 1
 collision_layer = 3
 script = ExtResource("1_3od7p")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-shape = SubResource("BoxShape3D_2q3br")
+[node name="First_aid_kit" parent="." instance=ExtResource("2_2q3br")]
+transform = Transform3D(-1.48619e-08, 0, 0.34, 0, 0.34, 0, -0.34, 0, -1.48619e-08, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_rf7l4")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0.135, 0)
+shape = SubResource("BoxShape3D_2q3br")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_3od7p")
