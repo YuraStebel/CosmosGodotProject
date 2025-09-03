@@ -59,10 +59,21 @@ func try_pickup_item(item_path):
 	var requesting_player = find_player(sender_id)
 	
 	var item = get_node_or_null(item_path)
-	if item:
+	if item and item is RigidBody3D:
 		if multiplayer.is_server():
+			give_item_to_player.rpc(requesting_player.get_path(), item_path)
 			destroy_item.rpc(item_path)
 
+@rpc('authority', 'call_local')
+func give_item_to_player(player_path, item_path):
+	var player = get_node_or_null(player_path)
+	var item = get_node_or_null(item_path)
+	
+	if player and item and item is RigidBody3D:
+		item.freeze = true
+		item.reparent(player.get_node("Hand"))
+		item.position = Vector3.ZERO
+		print(item.position)
 
 @rpc('authority', 'call_local')
 func destroy_item(item_path):
