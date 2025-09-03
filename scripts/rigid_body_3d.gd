@@ -9,6 +9,7 @@ var roll_force: float = 50.0
 @onready var stats = $Stats
 
 @onready var interact_cast = $Neck/InteractionCast
+@onready var hand = $Hand
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -53,6 +54,9 @@ func _physics_process(_delta: float) -> void:
 		
 	
 		use()
+		
+		if Input.is_action_just_pressed("drop"):
+			drop()
 
 func use():
 	var get_collision = interact_cast.get_collider()
@@ -60,3 +64,8 @@ func use():
 	if Input.is_action_just_pressed("use"):
 		if get_collision and get_collision.is_in_group("pickable"):
 			get_tree().current_scene.try_pickup_item.rpc(get_collision.get_path())
+
+func drop():
+	if hand.get_child_count() > 0:
+		var item_path = hand.get_child(0).get_path()
+		get_tree().current_scene.try_drop.rpc(item_path)

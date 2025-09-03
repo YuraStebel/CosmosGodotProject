@@ -73,7 +73,28 @@ func give_item_to_player(player_path, item_path):
 		item.freeze = true
 		item.reparent(player.get_node("Hand"))
 		item.position = Vector3.ZERO
-		print(item.position)
+		item.rotation = Vector3.ZERO
+
+
+@rpc('any_peer', 'call_local')
+func try_drop(item_path):
+	var sender_id = multiplayer.get_remote_sender_id()
+	var requesting_player = find_player(sender_id)
+	
+	var item = get_node_or_null(item_path)
+	if item and item is RigidBody3D:
+		if multiplayer.is_server():
+			remove_item_from_player.rpc(requesting_player.get_path(), item_path)
+
+@rpc('authority', 'call_local')
+func remove_item_from_player(player_path, item_path):
+	var player = get_node_or_null(player_path)
+	var item = get_node_or_null(item_path)
+	
+	if player and item and item is RigidBody3D:
+		item.freeze = false
+		item.reparent(get_tree().current_scene)
+		
 
 @rpc('authority', 'call_local')
 func destroy_item(item_path):
