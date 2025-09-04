@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dec52b6m86arh"]
+[gd_scene load_steps=27 format=3 uid="uid://dec52b6m86arh"]
 
 [ext_resource type="Texture2D" uid="uid://dutj6oqpqsah8" path="res://icon.svg" id="1_hajux"]
 [ext_resource type="Script" uid="uid://diebeww21a2n5" path="res://scripts/wrld.gd" id="1_rypmk"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://rw316pew7cps" path="res://scenes/spaceship.tscn" id="10_5aatj"]
 [ext_resource type="PackedScene" uid="uid://fqew7oqxjxiy" path="res://scenes/quest_item_2.tscn" id="11_u4mco"]
 [ext_resource type="PackedScene" uid="uid://pluxp3ca3xdk" path="res://scenes/quest_item_1.tscn" id="12_sai5e"]
+[ext_resource type="Texture2D" uid="uid://djd8iuoq2f0pq" path="res://images/2k_eris_fictional.jpg" id="13_qj85d"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dcih3"]
 panorama = ExtResource("2_wjubb")
@@ -54,6 +55,14 @@ uv1_triplanar = true
 [sub_resource type="BoxMesh" id="BoxMesh_5aatj"]
 material = SubResource("StandardMaterial3D_vq1nk")
 size = Vector3(1, 5, 7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrcri"]
+albedo_texture = ExtResource("13_qj85d")
+
+[sub_resource type="SphereMesh" id="SphereMesh_7p2ir"]
+material = SubResource("StandardMaterial3D_rrcri")
+radius = 50.0
+height = 100.0
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_rypmk")
@@ -167,6 +176,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.29984, 1.54097, 1.35281)
 
 [node name="QuestItem1" parent="." instance=ExtResource("12_sai5e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.12552, 0.99975, -0.564409)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(400, 0, 0, 0, 400, 0, 0, 0, 400, -16549, -18767, -25740)
+mesh = SubResource("SphereMesh_7p2ir")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
