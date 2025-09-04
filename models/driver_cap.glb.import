@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bpwn7ulu6dvaa"
-path="res://.godot/imported/cool_sunglasses.glb-015b7f8226f1474aeb75ef07a17f5bc6.scn"
+uid="uid://b2wbbfpthxn60"
+path="res://.godot/imported/driver_cap.glb-5b0455312e311a56661d383e0217071f.scn"
 
 [deps]
 
-source_file="res://models/cool_sunglasses.glb"
-dest_files=["res://.godot/imported/cool_sunglasses.glb-015b7f8226f1474aeb75ef07a17f5bc6.scn"]
+source_file="res://models/driver_cap.glb"
+dest_files=["res://.godot/imported/driver_cap.glb-5b0455312e311a56661d383e0217071f.scn"]
 
 [params]
 

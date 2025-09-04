@@ -11,7 +11,8 @@ var roll_force: float = 50.0
 @onready var interact_cast = $Neck/InteractionCast
 @onready var hand = $Hand
 
-@onready var cool_sunglasses_mesh = $cool_sunglasses
+@onready var cool_sunglasses_mesh = $cool_sunglasses2
+@onready var driver_cap = $driver_cap
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -20,6 +21,7 @@ func _ready() -> void:
 	if not is_multiplayer_authority(): return
 	
 	cool_sunglasses_mesh.visible = false
+	driver_cap.visible = false
 	
 	$ChibinautModel.hide()
 	
